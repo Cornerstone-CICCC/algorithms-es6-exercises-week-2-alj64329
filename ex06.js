@@ -21,6 +21,32 @@ Note: There may be multiple available spots for a particular vehicle. It does no
 
 const whereCanIPark = function (spots, vehicle) {
   // Code here!
+  //if(vehicle === "regular")-> look for first R in array
+  //if(vehicle === "small")-> look for first S in array
+  //if(vehicle === "motorcycle")-> look for first R,S or M in array
+  let type;
+  if (vehicle === "regular") {
+    type = "R"
+  } else if (vehicle === "small") {
+    type = "S"
+  } else {
+    type = ["R", "S", "M"]
+  }
+  let position = ""
+  let available = false
+
+  //forEach and look for position
+  const result = spots.forEach((elements, index) => {
+    if (available === true) return;
+    elements.forEach((element, subIndex) => {
+      if (element === type || type.includes(element)) {
+        position = `[${subIndex}, ${index}]`
+        available = true
+        return position
+      }
+    })
+  })
+  return position === "" ? false : position
 };
 
 console.log(
@@ -38,6 +64,7 @@ console.log(
     "regular"
   )
 ); //[4, 0]
+
 
 console.log(
   whereCanIPark(
@@ -64,5 +91,6 @@ console.log(
     "motorcycle"
   )
 ); // [3, 1]
+
 
 module.exports = whereCanIPark;

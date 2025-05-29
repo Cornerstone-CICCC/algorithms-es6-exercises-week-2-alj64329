@@ -10,6 +10,17 @@ Create a function named repeatNumbers that will return a string with each of the
 
 const repeatNumbers = function (data) {
   // Put your solution here
+  //data[0] is the value to repeat
+  //data[1] is the number of times repearting
+  let result = data.map(numbers => {
+    let output = "";
+    for (let i = 0; i < numbers[1]; i++) {
+      output += numbers[0]
+    }
+    return output
+  })
+
+  return result
 };
 
 console.log(repeatNumbers([[1, 10]])); // 1111111111
