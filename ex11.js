@@ -29,24 +29,38 @@ const PI = 3.14159;
 
 const sphereVolume = function (radius) {
   // Code here!
+  //return volume of sphere
+  return 4 / 3 * PI * Math.pow(radius, 3)
 };
 
 console.log(4186 < sphereVolume(10) && sphereVolume(10) < 4189); //true
 
 const coneVolume = function (radius, height) {
   // And here!
+  return PI * Math.pow(radius, 2) * height / 3
 };
 
 console.log(45 < coneVolume(3, 5) && coneVolume(3, 5) < 49); //true
 
 const prismVolume = function (height, width, depth) {
   // Probably here too!
+  return height * width * depth
 };
 
 console.log(prismVolume(3, 4, 5) === 60); //true
 
 const totalVolume = function (solids) {
   // Code here? Yup!
+  //Passed array of objects and calculate the volume, then return sum of all voulmes
+  let vol = 0
+  for (let obj of solids) {
+    if (obj.type === "sphere") {
+      vol += sphereVolume(obj.radius)
+    } else if (obj.type = "cone") {
+      vol += coneVolume(obj.radius, obj.height)
+    }
+  }
+  return vol
 };
 
 const largeSphere = {

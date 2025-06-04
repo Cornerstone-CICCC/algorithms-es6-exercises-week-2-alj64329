@@ -24,6 +24,24 @@ Create a function named squareCode that will receive a message, and return the s
 
 const squareCode = function (message) {
   // Put your solution here
+  //take space out from the string
+  let chars = (message.split(' ').join('')).split('')
+
+  let rowChars = Math.ceil(Math.sqrt(chars.length))
+  let output = []
+
+  for (let i = 0; i < chars.length; i += rowChars) {
+    let row = chars.slice(i, i + rowChars)
+    output.push(row)
+  }
+
+  let result = ""
+
+  for (let k = 0; k <= output.length; k++) {
+    let elements = output.map(arr => arr[k] || "")
+    result += elements.join("") + " "
+  }
+  return result
 };
 
 console.log(squareCode("chill out")); // clu hlt io
@@ -33,6 +51,6 @@ console.log(
   squareCode(
     "if man was meant to stay on the ground god would have given us roots"
   )
-); // imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn sseoau
+); // imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn sseoau*/
 
 module.exports = squareCode;

@@ -10,6 +10,12 @@ Create a function named organizeInstructors that will receive an array of instru
 
 const organizeInstructors = function (instructors) {
   // Put your solution here
+  const output = instructors.reduce((instructors, instructor) => {
+    instructors[instructor.course] = instructors[instructor.course] || []
+    instructors[instructor.course].push(instructor.name)
+    return instructors
+  }, {})
+  return output
 };
 
 console.log(

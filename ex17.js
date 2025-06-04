@@ -23,7 +23,18 @@ Create a function named urlDecode that will receive a URL encoded string, and re
 
 const urlDecode = function (text) {
   // Put your solution here
-};
+  let obj = {}
+
+  //split by &
+  let keys = text.split("&")//city=Vancouver, weather=lots%20of%20rain
+
+  for (let key of keys) {
+    let arr = key.split("=")
+    let keyName = arr[0]
+    obj[keyName] = arr[1].split('%20').join(' ')
+  }
+  return obj
+}
 
 console.log(urlDecode("duck=rubber")); //{duck: "rubber"}
 console.log(urlDecode("city=Vancouver&weather=lots%20of%20rain")); // {city: "Vancouver", weather: "lots of rain"}

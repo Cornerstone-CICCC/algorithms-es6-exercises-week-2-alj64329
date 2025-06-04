@@ -6,7 +6,10 @@ Both of the bakeries have a specialty, so they each have a stock of specific ing
 Lucky for the festival organizers, we've found a recipe book in the town library with TONS of fusion recipes, unfortunately it's thousands of pages long and we don't have much time. Let's write a function that helps determine which recipes match the ingredients that both bakeries have in stock.
 
 Instruction
-We need to complete a function called chooseRecipe(), which will receive three parameters: - An array of ingredients in stock at Bakery A - An array of ingredients in stock at Bakery B - An array of recipe objects. Each recipe has a name property(string) and an ingredient property(array)
+We need to complete a function called chooseRecipe(), which will receive three parameters: 
+- An array of ingredients in stock at Bakery A 
+- An array of ingredients in stock at Bakery B
+- An array of recipe objects. Each recipe has a name property(string) and an ingredient property(array)
 
 We are limiting our search to two ingredient recipes. We want to find a recipe that utilizes one ingredient from Bakery A and one from Bakery B.
 
@@ -22,7 +25,19 @@ This one is a doozy! We might want to start by creating a helper function called
 
 const chooseRecipe = function (bakeryA, bakeryB, recipes) {
   // Code here!
+  //iterate receipes
+  for (const recipe of recipes) {
+    if (ingredientCheck(bakeryA, recipe.ingredients) && ingredientCheck(bakeryB, recipe.ingredients)) {
+      return recipe.name
+    }
+  }
+  return
 };
+
+function ingredientCheck(bakery, ingredients) {//passing bakery ingredent array and recipe.ingredient array
+
+  return ingredients.some(ingredient => bakery.includes(ingredient))
+}
 
 let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
 let bakeryB = ["milk", "butter", "cream cheese"];
@@ -60,6 +75,6 @@ recipes = [
   },
 ];
 
-console.log(chooseRecipe(bakeryA, bakeryB, recipes)); //Nima's Famous Dijon Raisins
+console.log(chooseRecipe(bakeryA, bakeryB, recipes));//Nima's Famous Dijon Raisins
 
 module.exports = chooseRecipe;

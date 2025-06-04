@@ -17,6 +17,47 @@ For more information on casing styles, read Wikipedia's Special Case Styles for 
 
 const makeCaze = function (input, caze) {
   // Put your solution here
+  let arr = input.toLowerCase().split(' ')
+  let output = ""
+  let vowels = ["a", "e", "u", "i", "o"]
+
+  if (typeof caze === 'string') {
+    if (caze === "camel") {
+      output = arr.map((word, index) => {
+        if (index == 0) {
+          return word
+        }
+        return word[0].toUpperCase() + word.slice(1)
+      }).join('')
+
+    } else if (caze === "pascal") {
+      output = arr.map((word) => word[0].toUpperCase() + word.slice(1)).join('')
+
+    } else if (caze === "snake") {
+      output = arr.join('_')
+
+    } else if (caze === "kebab") {
+      output = arr.join('-')
+
+    } else if (caze === "title") {
+      output = arr.map((word) => word[0].toUpperCase() + word.slice(1)).join(' ')
+
+    } else if (caze === "vowel") {
+      output = arr.map((word) =>
+        word.split('').map((char) => vowels.includes(char) ? char.toUpperCase() : char).join('')).join(' ')
+
+    } else if (caze === "consonant") {
+      output = arr.map((word) =>
+        word.split('').map((char) => !vowels.includes(char) ? char.toUpperCase() : char).join('')).join(' ')
+
+    } else output = input
+
+  } else if (Array.isArray(caze) && caze[0] === "upper" && caze[1] === "snake") {
+    output = arr.map((word) => word.toUpperCase()).join('_')
+  } else {
+    output = input
+  }
+  return output
 };
 
 console.log(makeCaze("this is a string", "camel")); // thisIsAString

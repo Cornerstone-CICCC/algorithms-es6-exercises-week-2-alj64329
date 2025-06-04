@@ -24,10 +24,62 @@ Penny (1¢)
 
 const calculateChange = function (total, cash) {
   // Your code here
+  let change = cash - total
+  let changeObj = {}
+
+  if (change >= 2000) {
+    changeObj.twentyDollar = Math.floor(change / 100 / 20)
+    change -= changeObj.twentyDollar * 2000
+  }
+
+  if (change >= 1000) {
+    changeObj.tenDollar = Math.floor(change / 100 / 10)
+    change -= changeObj.tenDollar * 1000
+  }
+
+  if (change >= 500) {
+    changeObj.fiveDollar = Math.floor(change / 100 / 5)
+    change -= changeObj.fiveDollar * 500
+  }
+
+  if (change >= 200) {
+    changeObj.twoDollar = Math.floor(change / 100 / 2)
+    change -= changeObj.twoDollar * 200
+  }
+
+  if (change >= 100) {
+    changeObj.oneDollar = Math.floor(change / 100 / 1)
+    change -= changeObj.oneDollar * 100
+  }
+
+  if (change >= 25) {
+    changeObj.quater = Math.floor(change / 100 / 0.25)
+    change -= changeObj.quater * 25
+  }
+
+  if (change >= 10) {
+    changeObj.dime = Math.floor(change / 100 / 0.1)
+    change -= changeObj.dime * 10
+  }
+
+  if (change >= 5) {
+    changeObj.nickel = Math.floor(change / 100 / 0.05)
+    change -= changeObj.nickel * 5
+  }
+
+  if (change >= 1) {
+    changeObj.penny = Math.floor(change / 100 / 0.01)
+    change -= changeObj.penny * 1
+  }
+
+  return changeObj
 };
+
 
 console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }
 console.log(calculateChange(2623, 4000)); // { tenDollar: 1, twoDollar: 1, oneDollar: 1, quarter: 3, penny: 2 }
 console.log(calculateChange(501, 1000)); // { twoDollar: 2, quarter: 3, dime: 2, penny: 4 }
 
 module.exports = calculateChange;
+
+
